@@ -1,0 +1,29 @@
+#
+#                    Nmake File For ew2ssam  - Windows NT version
+#
+NODEBUG=1
+
+!include <ntwin32.mak>
+
+APP = ew2ssam
+O = $(APP).obj 
+
+B = $(EW_HOME)\$(EW_VERSION)\bin
+L = $(EW_HOME)\$(EW_VERSION)\lib
+
+$B\$(APP).exe: $O
+   $(link) $(conlflags) $(ldebug) $(conlibsmt) $O $L\kom.obj $L\getutil.obj \
+    $L\time_ew.obj $L\chron3.obj $L\logit.obj $L\transport.obj $L\sleep_ew.obj \
+    $L\swap.obj $L\mem_circ_queue.obj $L\threads_ew.obj \
+    $L\sema_ew.obj -out:$B\$(APP).exe
+
+.c.obj:
+   $(cc) $(GLOBALFLAGS)  /nologo $(cflags) $(cdebug) $(cvarsmt) $(tflags) $<
+
+
+# Clean-up directives
+clean:
+	-del a.out core *.o *.obj *% *~
+
+clean_bin:
+	-del $B\ew2ssam*

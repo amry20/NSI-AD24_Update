@@ -1,5 +1,5 @@
 #                    						CONFIGURATION FILE FOR NSI2EW_ADSEND
-#						    			   Revision 7.0
+#						    			   Revision 8.0
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
 #                        			EARTHWORM CONFIGURATION
 ModuleId		MOD_NSI2EW_ADSEND	# Module id of this instance of nsi2ew_adsend
@@ -9,13 +9,14 @@ LogFile			1			# Log file switch, 0=off, 1=on
 TraceBuffSize		4              		# ADC Data trace buffer size. Can be 2 or 4 bytes
 #                        			TELEMETRY CONFIGURATION
 Description		Earthworm_Software 	# Client description, max 128 characters without space
+SampleBlock		3			# Number of block in second which total sample should be buffered before sendthem to the transport ring
 BlockCapture		ABS_0			# ABS_0: capture first sample block that contains timestamp exactly at 0 second (eg:2023-01-01T12:00:00.000). 
 #						# ANY  : capture first sample block for any time its received (eg: 2023-01-01T12:59:59.200)
 #						# note: it's might be need update firmware if there is an error
 Telemetry		TCP			# TCP or SERIAL
 TCPHost			192.168.1.254		# TCP Address
 TCPPort			15024			# TCP Port
-TCPTimeout		2000			# TCP read and write timeout
+TCPTimeout		500			# TCP read and write timeout
 CommPort		7			# Comm Port Number
 CommSpeed		115200			# Comm Port BaudRate
 CommMode		8N1			# Can be 8N1 (8 data bits, No parity, 1 start/stop bit)
